@@ -4,10 +4,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Reminder{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">    
 </head>
 <body>
+    <header class="menu">
+        <a href="{% url 'notes_add' %}">Please create a note</a>
+    </header>
+    {% block content %}
+        {% for note in notes %}
+        <div>
+        <h3>{{ note.title }}</h3>
+        <p>
+            <pre>
+            {{ note.body }}
+            </pre>
+        </p>
+        
+        </div>
+            {% endfor %}
+
+        {% endblock %}
+            
+    
+    
+
+    <footer class="menu">
+        <a href="{% url 'contact_us' %}">Chat with Us!</a>
+    </footer>
     
 </body>
 </html>

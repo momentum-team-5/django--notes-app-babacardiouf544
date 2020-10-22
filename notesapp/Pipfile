@@ -11,6 +11,7 @@ django-extensions = "*"
 django-debug-toolbar = "*"
 django-registration-redux = "*"
 django-environ = "*"
+pipfile = "*"
 
 [requires]
 python_version = "3.8"

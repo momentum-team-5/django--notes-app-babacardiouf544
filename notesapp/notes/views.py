@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.mail import send_mail, mail_admins
 from django.contrib.messages import success, error
 from .models import Note
-
+from .forms import NoteForm, ContactForm, SearchForm
 # Create your views here.
 def notes_list(request):
     notes = Note.objects.all()
@@ -27,7 +27,7 @@ def notes_add(request):
             note.save()
             return redirect(to='notes_list')
 
-    return render(request, "notes/notes_add.html", {"note": note}) 
+    return render(request, "notes/notes_edit.html", {"form": form}) 
 
 def notes_edit(request, pk):
     note = get_object_or_404(Note, pk=pk)
@@ -37,7 +37,7 @@ def notes_edit(request, pk):
     else:
         form = NoteForm(data=request.post, instance=note)
 
-        if for.isvalid():
+        if form.isvalid():
             form.save()
             return redirect(to="notes_list")
 
@@ -67,3 +67,8 @@ def contact_us(request):
             return redirect(to='notes_list')
 
     return render(request, "contact_us.html", {"form": form})
+
+def search_notes(request):
+    form = SearchForm()
+
+    return render(request, "poems/search.html", {"form": form})

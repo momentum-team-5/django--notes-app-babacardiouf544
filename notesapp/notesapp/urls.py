@@ -19,6 +19,12 @@ from notes import views as notes_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('contact/', notes_views.contact_us, name="contact_us"),
     path('', notes_views.notes_list, name='notes_list'),
-    path('notes/<int:pk>', notes_views.notes_detail, name='notes_detail')
+    path('notes/<int:pk>/', notes_views.notes_detail, name='notes_detail'),
+    path("add/", notes_views.notes_add, name="notes_add"),
+    path('delete/<int:pk>/', notes_views.notes_delete, name='notes_delete'),
+    path('edit/<int:pk>/', notes_views.notes_edit, name='notes_edits'),
+    path('notes/search', notes_views.search_notes, name='notes_search')
+
 ]
